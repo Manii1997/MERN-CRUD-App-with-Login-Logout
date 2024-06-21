@@ -15,30 +15,28 @@ const NoteCard = ({
     <div className="note-card p-4 m-3 border rounded shadow-sm hover:shadow-md transition-all ease-in-out">
       <div className="note-header flex justify-between items-center">
         <div>
-          <h5 className="text-sm font-bold">
+          <h3 className="text-xl font-bold">
             {title}{" "}
             <span className="text-xs text-slate-500">
               {moment(date).format("Do MMM YYYY")}
             </span>
-          </h5>
+          </h3>
         </div>
-        <div onClick={onPinNote} className="cursor-pointer flex gap-3">
-          <MdCreate
-            onClick={onEdit}
-            size={20}
-            className="text-blue-500 text-sm cursor-pointer"
-          />
+        <div className="cursor-pointer flex gap-3">
+          <button className="text-blue-500 text-sm cursor-pointer">
+            <MdCreate onClick={onEdit} size={20} />
+          </button>
 
-          <MdDelete
-            onClick={onDelete}
-            size={20}
-            className="text-red-500 text-sm cursor-pointer"
-          />
-          {isPinned ? (
-            <LuPin className="text-sky-500 self-center" />
-          ) : (
-            <LuPinOff className="self-center" />
-          )}
+          <button className="text-red-500 text-sm cursor-pointer">
+            <MdDelete onClick={onDelete} size={20} />
+          </button>
+          <button onClick={onPinNote}>
+            {isPinned ? (
+              <LuPin className="text-sky-500 self-center" />
+            ) : (
+              <LuPinOff className="self-center" />
+            )}
+          </button>
         </div>
       </div>
       <p className="text-sm mt-2">{content}</p>

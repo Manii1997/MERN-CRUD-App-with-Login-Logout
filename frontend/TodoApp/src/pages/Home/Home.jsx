@@ -121,18 +121,29 @@ const Home = () => {
     const noteId = noteData._id;
     try {
       const response = await axiosInstance.put(
-        "/update-note-pinned/" + noteId,
+        `/update-note-pinned/${noteId}`,
         {
           isPinned: !noteData.isPinned,
         }
       );
 
       if (response.data && response.data.note) {
-        showToastMessage("Note Updated Successfully");
+        showToastMessage("Note Updated Successfully", "success");
         getAllNotes();
       }
     } catch (error) {
-      console.log(error);
+      if (
+        error.response &&
+        error.response.data &&
+        error.response.data.message
+      ) {
+        showToastMessage(error.response.data.message, "error");
+      } else {
+        showToastMessage(
+          "An unexpected error occurred. Please try again.",
+          "error"
+        );
+      }
     }
   };
 

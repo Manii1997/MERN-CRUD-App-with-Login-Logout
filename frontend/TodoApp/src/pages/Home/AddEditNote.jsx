@@ -1,6 +1,5 @@
 import { useState } from "react";
 import axiosInstance from "../../utils/axiosInstance";
-import { MdClose } from "react-icons/md";
 
 const AddEditNote = ({
   noteData,
@@ -79,14 +78,6 @@ const AddEditNote = ({
           <h1 className="text-xl font-bold">
             {type === "edit" ? "Update Note" : "Add Note"}
           </h1>
-          <button
-            className="text-gray-600 hover:text-gray-900"
-            onClick={() =>
-              setOpenEditModal({ isShow: false, type: "add", data: null })
-            }
-          >
-            <MdClose className="text-[24px]" />
-          </button>
         </div>
 
         <div className="mt-4">
@@ -107,9 +98,14 @@ const AddEditNote = ({
             onChange={(e) => setContent(e.target.value)}
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-success mt-3 text-white">
-          {type === "edit" ? "Update" : "Add"}
-        </button>
+        <div className="flex gap-2 mt-3">
+          <button type="submit" className="btn btn-success  text-white">
+            {type === "edit" ? "Update" : "Add"}
+          </button>
+          <button className="btn btn-error text-white" onClick={onClose}>
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );
