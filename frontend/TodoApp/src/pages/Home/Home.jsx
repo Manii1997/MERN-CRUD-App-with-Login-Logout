@@ -155,12 +155,14 @@ const Home = () => {
 
   return (
     <>
-      <Navbar
-        userInfo={userInfo}
-        onSearchNote={onSearchNote}
-        handleClearSearch={handleClearSearch}
-      />
-      <div className="container mx-auto ">
+      <div className="fixed w-full bg-white mt-0">
+        <Navbar
+          userInfo={userInfo}
+          onSearchNote={onSearchNote}
+          handleClearSearch={handleClearSearch}
+        />
+      </div>
+      <div className="container mx-auto pt-[28%] md:pt-[5%] lg:pt-[4%]">
         {allNotes.length > 0 ? (
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5">
             {allNotes.map((item, index) => (
