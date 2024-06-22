@@ -193,7 +193,7 @@ const Home = () => {
         )}
 
         <button
-          className="w-14 h-14 flex items-center justify-center rounded-2xl bg-sky-500 hover:bg-sky-600 absolute right-10 bottom-10"
+          className="w-14 h-14 flex items-center justify-center rounded-2xl bg-sky-500 hover:bg-sky-600 fixed right-10 bottom-10"
           onClick={() => {
             setOpenEditModal({ isShow: true, type: "add", data: null });
           }}
