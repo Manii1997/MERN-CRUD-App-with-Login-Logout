@@ -51,7 +51,7 @@ app.post("/create-account", async (req, res) => {
   if (isUser) {
     return res.json({
       error: true,
-      message: "User already exist",
+      message: "Email already exist",
     });
   }
   const user = new User({

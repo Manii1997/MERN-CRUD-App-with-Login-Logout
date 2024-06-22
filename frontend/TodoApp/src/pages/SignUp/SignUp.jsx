@@ -14,20 +14,26 @@ const SignUp = () => {
 
   const navigate = useNavigate();
 
+  const validateEmail = (email) => {
+    const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return re.test(email);
+  };
+
   const handleSignUp = async (e) => {
     e.preventDefault();
 
     if (!name) {
-      setError("Please enter name");
+      setError("Please enter your name");
       return;
     }
 
     if (!validateEmail(email)) {
-      setError("Please enter valid email");
+      setError("Please enter a valid email");
       return;
     }
+
     if (!password) {
-      setError("Please enter the password");
+      setError("Please enter a password");
       return;
     }
 
@@ -41,11 +47,13 @@ const SignUp = () => {
       });
 
       if (response.data && response.data.accessToken) {
-        setError(response.data.message);
-      }
-      if (response.data && response.data.accessToken) {
         localStorage.setItem("token", response.data.accessToken);
         navigate("/");
+      } else {
+        setError(
+          response.data.message ||
+            "An unexpected error occurred, please try again"
+        );
       }
     } catch (error) {
       if (
